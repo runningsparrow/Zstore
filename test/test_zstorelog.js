@@ -3,15 +3,15 @@ const zstorelogmodel = require("../model/zstorelogModel");
 
 
 //add
-// const zstorelog = new zstorelogmodel({
-//     logid: 1,
-//     logdate: "2020/3/24",
-//     loguser: "潘洁群",
-//     logsystem: "PLEXFA",
-//     logdisk: "A97D A97E",
-//     logapplyuser: "张一鸣",
-//     logtimestamp: new Date(),
-// })
+const zstorelog = new zstorelogmodel({
+    logid: 1,
+    logdate: "2020/3/24",
+    loguser: "joe",
+    logsystem: "PLEXFA",
+    logdisk: "A97D A97E",
+    logapplyuser: "zym",
+    logtimestamp: new Date(),
+})
 
 // const zstorelog = new zstorelogmodel({
 //     logid: 3,
@@ -24,19 +24,19 @@ const zstorelogmodel = require("../model/zstorelogModel");
 // })
 
 
-// zstorelog.save(function(err, docs){
-//     if(err) {
-//         console.log(err);
-//     }
-//     console.log("保存成功：" + docs);
-//     mongoose.disconnect(function(err){
-//         if(err)
-//         {
-//             console.log("断开连接失败！")
-//         }
-//         console.log("断开连接成功！")
-//     })
-// })
+zstorelog.save(function(err, docs){
+    if(err) {
+        console.log(err);
+    }
+    console.log("保存成功：" + docs);
+    mongoose.disconnect(function(err){
+        if(err)
+        {
+            console.log("断开连接失败！")
+        }
+        console.log("断开连接成功！")
+    })
+})
 
 
 
