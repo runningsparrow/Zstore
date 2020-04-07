@@ -16,10 +16,10 @@ const zstorelog = new zstorelogmodel({
 // const zstorelog = new zstorelogmodel({
 //     logid: 3,
 //     logdate: "2020/3/24",
-//     loguser: "潘洁群",
+//     loguser: "Joe",
 //     logsystem: "PLEXF5",
 //     logdisk: "D4F7 D4F8",
-//     logapplyuser: "张一鸣",
+//     logapplyuser: "zym",
 //     logtimestamp: new Date(),
 // })
 
@@ -68,7 +68,7 @@ zstorelog.save(function(err, docs){
 //findOneAndUpdate
 // zstorelogmodel.findOneAndUpdate(
 //     {logid: 2},
-//     {"$set":{loguser: "潘洁群潘洁群",logapplyuser: "张一鸣张一鸣",}},
+//     {"$set":{loguser: "JoeJoe",logapplyuser: "zymzym",}},
 //     function(err,docs){
 //         if(err)
 //         {
