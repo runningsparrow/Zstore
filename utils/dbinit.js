@@ -1,13 +1,37 @@
 // ./init.js
 
-const disktype = require('../model/disktype');
+// const disktype = require('../model/disktype');
+// const diskbox = require('../model/diskbox');
+const ctrlunit = require('../model/ctrlunit')
+const diskaddr = require('../model/diskaddr')
+const sysplex_box = require('../model/sysplex_box')
 
-disktype.sync().then(function(result){
+
+// disktype.sync().then(function(result){
+//     console.log(result)
+//     console.log("model disktype已经同步数据库")
+// })
+
+
+// diskbox.sync().then(function(result){
+//     console.log(result)
+//     console.log("model diskbox已经同步数据库")
+// })
+
+ctrlunit.sync().then(function(result){
     console.log(result)
-    console.log("model disktype已经同步数据库")
+    console.log("model ctrlunit已经同步数据库")
 })
 
+diskaddr.sync().then(function(result){
+    console.log(result)
+    console.log("model diskaddr已经同步数据库")
+})
 
+sysplex_box.sync().then(function(result){
+    console.log(result)
+    console.log("model sysplex_box已经同步数据库")
+})
 
 /*
 // 标准同步
