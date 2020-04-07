@@ -10,6 +10,9 @@ const disktype = seq.define(
         storagetype:{
             type: Sequelize.STRING(12)
         },
+        storeamount:{
+            type: Sequelize.FLOAT
+        },
         rmrk:{
             type: Sequelize.TEXT
         },
