@@ -5,12 +5,26 @@ const disktype = require('../model/disktype');
 
 
 //新增
+// disktype.create(
+//     {
+//         storetypeid: 1,
+//         storagetype: 'M1',
+//         storeamount: 0.94561,
+//         rmrk: '模1',
+//         createtime: new Date(),
+//         updatetime: new Date()
+//     }
+// ).then(function(result){
+//     console.log(result)
+//     console.log("插入数据成功！")
+// })
+
 disktype.create(
     {
-        storetypeid: 1,
-        storagetype: 'M1',
-        storeamount: 0.94561,
-        rmrk: '模1',
+        storetypeid: 2,
+        storagetype: 'M3',
+        storeamount: 2.83684,
+        rmrk: '模3',
         createtime: new Date(),
         updatetime: new Date()
     }
@@ -19,19 +33,50 @@ disktype.create(
     console.log("插入数据成功！")
 })
 
-// disktype.create(
-//     {
-//         storetypeid: 2,
-//         storagetype: 'M3',
-//         rmrk: '模3',
-//         createtime: new Date(),
-//         updatetime: new Date()
-//     }
-// ).then(function(result){
-//     console.log(result)
-//     console.log("插入数据成功！")
 
-// })
+disktype.create(
+    {
+        storetypeid: 3,
+        storagetype: 'M9',
+        storeamount: 8.51053,
+        rmrk: '模9',
+        createtime: new Date(),
+        updatetime: new Date()
+    }
+).then(function(result){
+    console.log(result)
+    console.log("插入数据成功！")
+})
+
+
+disktype.create(
+    {
+        storetypeid: 4,
+        storagetype: 'M27',
+        storeamount: 27.844,
+        rmrk: '模27',
+        createtime: new Date(),
+        updatetime: new Date()
+    }
+).then(function(result){
+    console.log(result)
+    console.log("插入数据成功！")
+})
+
+
+disktype.create(
+    {
+        storetypeid: 5,
+        storagetype: 'M54',
+        storeamount: 55.6664,
+        rmrk: '模54',
+        createtime: new Date(),
+        updatetime: new Date()
+    }
+).then(function(result){
+    console.log(result)
+    console.log("插入数据成功！")
+})
 
 //修改
 

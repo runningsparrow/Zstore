@@ -1,18 +1,18 @@
 // ./init.js
 
-const disktype = require('../model/disktype');
+// const disktype = require('../model/disktype');
 // const diskbox = require('../model/diskbox');
 // const ctrlunit = require('../model/ctrlunit')
-// const diskaddr = require('../model/diskaddr')
+const diskaddr = require('../model/diskaddr')
 // const sysplex_box = require('../model/sysplex_box')
 
-disktype.drop().then( function(){
-    console.log("disktype已经删除")
-    disktype.sync().then(function(result){
-        console.log(result)
-        console.log("model disktype已经同步数据库")
-    })
-})
+// disktype.drop().then( function(){
+//     console.log("disktype已经删除")
+//     disktype.sync().then(function(result){
+//         console.log(result)
+//         console.log("model disktype已经同步数据库")
+//     })
+// })
 
 
 
@@ -26,10 +26,10 @@ disktype.drop().then( function(){
 //     console.log("model ctrlunit已经同步数据库")
 // })
 
-// diskaddr.sync().then(function(result){
-//     console.log(result)
-//     console.log("model diskaddr已经同步数据库")
-// })
+diskaddr.sync().then(function(result){
+    console.log(result)
+    console.log("model diskaddr已经同步数据库")
+})
 
 // sysplex_box.sync().then(function(result){
 //     console.log(result)

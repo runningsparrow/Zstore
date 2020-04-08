@@ -22,6 +22,9 @@ const diskaddr = seq.define(
         diskaddrcu: {
             type: Sequelize.STRING,
         },
+        diskaddraddrzvm: {
+            type: Sequelize.STRING,
+        },
         diskaddruse: {
             type: Sequelize.STRING,
         },
