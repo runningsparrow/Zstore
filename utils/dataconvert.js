@@ -4,7 +4,7 @@ const XlsxPopulate = require('xlsx-populate')
 
 convertaddr = function (path,file,filepassword){
     XlsxPopulate
-    .fromFileAsync(path+file)
+    .fromFileAsync(path+file,{password:filepassword})
     .then(workbook => {
         console.log(workbook)
     })
