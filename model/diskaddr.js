@@ -7,15 +7,19 @@ const diskaddr = seq.define(
         diskaddrid: {
             type: Sequelize.INTEGER,
         },
+        //地址
         diskaddraddr: {
             type: Sequelize.STRING,
         },
+        //卷名
         diskaddrlabel: {
             type: Sequelize.STRING,
         },
+        //TYPE
         diskaddrtype: {
             type: Sequelize.STRING,
         },
+        //PLEX
         diskaddrsg: {
             type: Sequelize.STRING,
         },
@@ -29,6 +33,9 @@ const diskaddr = seq.define(
             type: Sequelize.STRING,
         },
         diskaddrenv: {
+            type: Sequelize.STRING,
+        },
+        diskaddrbox: {
             type: Sequelize.STRING,
         },
         rmrk:{
