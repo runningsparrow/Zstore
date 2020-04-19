@@ -125,6 +125,13 @@ convertaddr1 = function(path,file){
                             // disakaddrdata.diskaddruse = ""
                         }
                     };
+                    if(row_start = DATALINE4)
+                    {
+                        if(typeof(cell) !== "undefined")
+                        {
+                            
+                        }
+                    }
                     if(row_start > DATALINE4)
                     {
                         
