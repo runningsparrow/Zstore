@@ -89,7 +89,8 @@ class xlsxcopy(object):
 
 if __name__ == "__main__":
 
-    path = r"D:/workspace/pyhon3/cipan/"
+    # path = r"D:/workspace/pyhon3/cipan/"
+    path = r"D:/workspace/nodejs/cipan/"
     localfilename = "张江主机新线磁盘统计表_测试开发 (20200324).xlsx"
     passwd='111111'
     destfilename = "template1.xlsx"
