@@ -23,7 +23,7 @@ convertaddr1 = function(path,file){
 
     // for(var i=0;  i < wk.SheetNames.length; i++)
     var recordcount = 1
-    for(var i=0;  i < 2; i++)
+    for(var i=0;  i < 1; i++)
     {
         const shtname = wk.SheetNames[i]
         console.log(shtname)
@@ -55,7 +55,12 @@ convertaddr1 = function(path,file){
             var row_end = range.e.r;
             const col_start = range.s.c;
             const col_end = range.e.c;
+            var columname_data = []
+            var columname = []
             
+            var matrixaccux = 0
+            var matrixaccuy = 0
+
             // const row_data;
             // const j;
             // const addr;
@@ -68,6 +73,7 @@ convertaddr1 = function(path,file){
                 console.log(row_start)
                 console.log(row_end)
                 var cellunitstart  = 1
+                
                 for(j=col_start;j<=col_end;j++) {
                     const addr = xlsx.utils.encode_col(j) + xlsx.utils.encode_row(row_start);
                     console.log(addr)
@@ -125,11 +131,31 @@ convertaddr1 = function(path,file){
                             // disakaddrdata.diskaddruse = ""
                         }
                     };
-                    if(row_start = DATALINE4)
+                    if(row_start == DATALINE4)
                     {
                         if(typeof(cell) !== "undefined")
                         {
-                            
+                            if(cell.v !== "")
+                            {
+                                if(cell.v == "地址" && j == 0)
+                                {
+                                    columname.push(cell.v)
+                                }
+                                if(cell.v !== "地址")
+                                {
+                                    columname.push(cell.v)
+                                }
+                                if(cell.v == "地址" && j !== 0)
+                                {
+                                    columname_data.push(columname)
+                                    columname = []
+                                    columname.push(cell.v)
+                                }
+                            }else{
+                                columname.push(" ")
+                            }
+                        }else{
+                            columname.push(" ")
                         }
                     }
                     if(row_start > DATALINE4)
@@ -141,6 +167,22 @@ convertaddr1 = function(path,file){
                             console.log(cell.v)
                             row_data.push(cell.v);
                             disakaddrdata.diskaddrid = recordcount
+
+                            console.log("start loop")
+                            for(x in columname_data){
+                                console.log(x)
+                                console.log(columname_data[x])
+                                for (y in columname_data[x])
+                                {
+                                    console.log(y)
+                                    console.log(columname_data[x][y])
+                                    matrixaccuy ++
+                                    if (columname_data[x][y] == 'N')
+                                    {
+                                        matrixaccux ++
+                                    }
+                                }
+                            }
 
                             if (cellunitstart <=5)
                             {
@@ -172,8 +214,6 @@ convertaddr1 = function(path,file){
                         }
                         else{
                             console.log("xxxxxxxxx2")
-                            console.log(row_start)
-                            console.log(j)
                             row_data.push("");
 
                             if (cellunitstart <=5)
@@ -216,15 +256,20 @@ convertaddr1 = function(path,file){
                     
 
                     //insert data
+                    
 
                 }
                 rows.push(row_data);
             }
             console.log(col_start)
+            console.log(columname_data)
+            console.log(matrixaccux)
+            console.log(matrixaccuy)
         } 
         
         //保存当前页内的数据
         result[shtname] = rows;
+        
         
         // console.log(result)
     }
