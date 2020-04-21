@@ -28,8 +28,7 @@ convertaddr1 = function(path,file){
         const shtname = wk.SheetNames[i]
         console.log(shtname)
         //保存数据范围数据
-        const rows = [];
-        const result = []
+
         const disakaddrdata =
         {
             diskaddrid: 1,
@@ -56,24 +55,29 @@ convertaddr1 = function(path,file){
             const col_start = range.s.c;
             const col_end = range.e.c;
             var columname_data = []
-            var columname = []
-            
-            var matrixaccux = 0
-            var matrixaccuy = 0
 
-            // const row_data;
+            var celldata = []
+            var columncount = 0
+            var columncount1 = 0
+            
+
+
+            
             // const j;
             // const addr;
             // const cell;
             //按行对 sheet 内的数据循环
             for(;row_start<=row_end;row_start++) {
-                const row_data = [];
+                
                 //读取当前行里面各个列的数据
                 console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&")
                 console.log(row_start)
                 console.log(row_end)
-                var cellunitstart  = 1
                 
+                //用于每一行列数的累加
+                var columndatacount = 0
+                var insertflag = false
+
                 for(j=col_start;j<=col_end;j++) {
                     const addr = xlsx.utils.encode_col(j) + xlsx.utils.encode_row(row_start);
                     console.log(addr)
@@ -139,139 +143,191 @@ convertaddr1 = function(path,file){
                             {
                                 if(cell.v == "地址" && j == 0)
                                 {
-                                    columname.push(cell.v)
+                                    // columname.push(cell.v)
+                                    celldata.push(cell.v)
+                                    celldata.push(columncount)
+                                    celldata.push(columncount1)
+                                    celldata.push("N")
+                                    columname_data.push(celldata)
+                                    celldata = []
                                 }
                                 if(cell.v !== "地址")
                                 {
-                                    columname.push(cell.v)
+                                    // columname.push(cell.v)
+                                    celldata.push(cell.v)
+                                    celldata.push(columncount)
+                                    celldata.push(columncount1)
+                                    celldata.push("N")
+                                    columname_data.push(celldata)
+                                    celldata = []
                                 }
                                 if(cell.v == "地址" && j !== 0)
                                 {
-                                    columname_data.push(columname)
-                                    columname = []
-                                    columname.push(cell.v)
+                                    // columname_data.push(columname)
+                                    //  
+                                    // columname.push(cell.v)
+                                    celldata.push(cell.v)
+                                    celldata.push(columncount)
+                                    columncount1 = 0
+                                    celldata.push(columncount1)
+                                    celldata.push("N")
+                                    columname_data.push(celldata)
+                                    celldata = []
                                 }
                             }else{
-                                columname.push(" ")
+                                // columname.push(" ")
+                                celldata.push(" ")
+                                celldata.push(columncount)
+                                celldata.push(columncount1)
+                                celldata.push("N")
+                                columname_data.push(celldata)
+                                celldata = []
                             }
                         }else{
-                            columname.push(" ")
+                            // columname.push(" ")
+                            celldata.push(" ")
+                            celldata.push(columncount)
+                            celldata.push(columncount1)
+                            celldata.push("N")
+                            columname_data.push(celldata)
+                            celldata = []
                         }
+                        columncount ++;
+                        columncount1 ++
                     }
                     if(row_start > DATALINE4)
                     {
+                        k = j + 1;
                         
                         if(typeof(cell) !== "undefined")
                         {
-                            console.log("xxxxxxxxx1")
-                            console.log(cell.v)
-                            row_data.push(cell.v);
-                            disakaddrdata.diskaddrid = recordcount
-
-                            console.log("start loop")
-                            for(x in columname_data){
-                                console.log(x)
-                                console.log(columname_data[x])
-                                for (y in columname_data[x])
+                            if(columname_data[j][2] == 0)
+                            {
+                                disakaddrdata.diskaddraddr = cell.v
+                            }
+                            if(columname_data[j][2] == 1)
+                            {
+                                disakaddrdata.diskaddrlabel = cell.v
+                            }
+                            if(columname_data[j][2] == 2)
+                            {
+                                disakaddrdata.diskaddrtype = cell.v
+                            }
+                            if(columname_data[j][2] == 3)
+                            {
+                                disakaddrdata.diskaddrsg = cell.v
+                            }
+                            console.log(columname_data[j][2])
+                            console.log(j)
+                            console.log(k)
+                            
+                            if(k < columncount)
+                            {
+                                if(columname_data[j][2] == 4 && columname_data[k][2] == 0 )
                                 {
-                                    console.log(y)
-                                    console.log(columname_data[x][y])
-                                    matrixaccuy ++
-                                    if (columname_data[x][y] == 'N')
-                                    {
-                                        matrixaccux ++
-                                    }
+                                    disakaddrdata.diskaddrplex = cell.v
+                                    insertfalg = true
+                                }
+                                if(columname_data[j][2] == 4 && columname_data[k][2] == 5 )
+                                {
+                                    disakaddrdata.diskaddraddrzvm = cell.v
                                 }
                             }
 
-                            if (cellunitstart <=5)
+                            if(k = columncount)
                             {
-                                if(cellunitstart == 1)
-                                {
-                                    disakaddrdata.diskaddraddr = cell.v
-                                }
-                                if(cellunitstart == 2)
-                                {
-                                    disakaddrdata.diskaddrlabel = cell.v
-                                }
-                                if(cellunitstart == 3)
-                                {
-                                    disakaddrdata.diskaddrtype = cell.v
-                                }
-                                if(cellunitstart == 4)
-                                {
-                                    disakaddrdata.diskaddrsg = cell.v
-                                }
-                                if(cellunitstart == 5)
+                                if(columname_data[j][2] == 4)
                                 {
                                     disakaddrdata.diskaddrplex = cell.v
-                                    
+                                    insertfalg = true
                                 }
-
+                                
+                            }
+                            
+                            if(columname_data[j][2] == 5)
+                            {
+                                disakaddrdata.diskaddrplex = cell.v
+                                insertfalg = true
                             }
 
                             
                         }
-                        else{
-                            console.log("xxxxxxxxx2")
-                            row_data.push("");
-
-                            if (cellunitstart <=5)
+                        else
+                        {
+                            if(columname_data[j][2] == 0)
                             {
-                                if(cellunitstart == 1)
-                                {
-                                    disakaddrdata.diskaddraddr = ""
-                                }
-                                if(cellunitstart == 2)
-                                {
-                                    disakaddrdata.diskaddrlabel = ""
-                                }
-                                if(cellunitstart == 3)
-                                {
-                                    disakaddrdata.diskaddrtype = ""
-                                }
-                                if(cellunitstart == 4)
-                                {
-                                    disakaddrdata.diskaddrsg = ""
-                                }
-                                if(cellunitstart == 5)
+                                disakaddrdata.diskaddraddr = ""
+                            }
+                            if(columname_data[j][2] == 1)
+                            {
+                                disakaddrdata.diskaddrlabel = ""
+                            }
+                            if(columname_data[j][2] == 2)
+                            {
+                                disakaddrdata.diskaddrtype = ""
+                            }
+                            if(columname_data[j][2] == 3)
+                            {
+                                disakaddrdata.diskaddrsg = ""
+                            }
+                            console.log(columname_data[j][2])
+                            if(k < columncount)
+                            {
+                                if(columname_data[j][2] == 4 && columname_data[k][2]==0)
                                 {
                                     disakaddrdata.diskaddrplex = ""
-                                    
+                                    insertflag = true
                                 }
-
+                                if(columname_data[j][2] == 4 && columname_data[k][2]==5)
+                                {
+                                    disakaddrdata.diskaddraddrzvm = ""
+                                }
+                            }
+                            if(k = columncount)
+                            {
+                                if(columname_data[j][2] == 4)
+                                {
+                                    disakaddrdata.diskaddrplex = ""
+                                    insertfalg = true
+                                }
+                                
+                            }
+                            
+                            if(columname_data[j][2] == 5)
+                            {
+                                disakaddrdata.diskaddrplex = ""
+                                insertflag = true
                             }
                         }
-                        cellunitstart = cellunitstart + 1
-                        if(cellunitstart > 5)
+
+                        if(insertflag == true)
                         {
-                            cellunitstart = 1
-                            recordcount = recordcount + 1
+                            disakaddrdata.diskaddrid = recordcount
+                            //do insert data
+                            console.log(recordcount)
                             console.log(disakaddrdata)
 
-                            console.log(cellunitstart)
+                            //set insertflag false
+                            insertflag == false
+                            recordcount = recordcount + 1
+                            
                         }
+                        
+
                         
                     }
                     
 
-                    //insert data
+                    
                     
 
                 }
-                rows.push(row_data);
+                
             }
             console.log(col_start)
             console.log(columname_data)
-            console.log(matrixaccux)
-            console.log(matrixaccuy)
         } 
         
-        //保存当前页内的数据
-        result[shtname] = rows;
-        
-        
-        // console.log(result)
     }
 
 }
