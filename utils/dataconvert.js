@@ -59,6 +59,8 @@ convertaddr1 = function(path,file){
             var celldata = []
             var columncount = 0
             var columncount1 = 0
+            var diskaddrcuarrary = []
+            var diskaddrusearrary = []
             
 
 
@@ -77,6 +79,8 @@ convertaddr1 = function(path,file){
                 //用于每一行列数的累加
                 var columndatacount = 0
                 var insertflag = false
+
+                var tempaddr = ""
 
                 for(j=col_start;j<=col_end;j++) {
                     const addr = xlsx.utils.encode_col(j) + xlsx.utils.encode_row(row_start);
@@ -109,14 +113,17 @@ convertaddr1 = function(path,file){
                         {
                             if(cell.v !== "")
                             {
-                                disakaddrdata.diskaddrcu = cell.v
+                                // disakaddrdata.diskaddrcu = cell.v
+                                diskaddrcuarrary.push(cell.v)
                             }
                             else{
                                 // disakaddrdata.diskaddrcu = ""
+                                diskaddrcuarrary.push("")
                             }
                         }
                         else{
                             // disakaddrdata.diskaddrcu = ""
+                            diskaddrcuarrary.push("")
                         }
                     };
                     if(row_start == DATALINE3)
@@ -125,14 +132,17 @@ convertaddr1 = function(path,file){
                         {
                             if(cell.v !== "")
                             {
-                                disakaddrdata.diskaddruse = cell.v
+                                // disakaddrdata.di skaddruse = cell.v'
+                                diskaddrusearrary.push(cell.v)
                             }
                             else{
                                 // disakaddrdata.diskaddruse = ""
+                                diskaddrusearrary.push("")
                             }
                         }
                         else{
                             // disakaddrdata.diskaddruse = ""
+                            diskaddrusearrary.push("")
                         }
                     };
                     if(row_start == DATALINE4)
@@ -204,6 +214,9 @@ convertaddr1 = function(path,file){
                             if(columname_data[j][2] == 0)
                             {
                                 disakaddrdata.diskaddraddr = cell.v
+                                disakaddrdata.diskaddrcu = diskaddrcuarrary[j]
+                                disakaddrdata.diskaddruse = diskaddrusearrary[j]
+                                
                             }
                             if(columname_data[j][2] == 1)
                             {
@@ -218,6 +231,7 @@ convertaddr1 = function(path,file){
                                 disakaddrdata.diskaddrsg = cell.v
                             }
                             console.log(columname_data[j][2])
+                            
                             console.log(j)
                             console.log(k)
                             
@@ -226,30 +240,57 @@ convertaddr1 = function(path,file){
                                 if(columname_data[j][2] == 4 && columname_data[k][2] == 0 )
                                 {
                                     disakaddrdata.diskaddrplex = cell.v
-                                    insertfalg = true
+                                    insertflag = true
                                 }
                                 if(columname_data[j][2] == 4 && columname_data[k][2] == 5 )
                                 {
                                     disakaddrdata.diskaddraddrzvm = cell.v
                                 }
+                                else{
+                                    disakaddrdata.diskaddraddrzvm = ""
+                                }
                             }
+                            // else 
+                            // {
+                                
+                            //     if(k = columncount)
+                            //     {
+                            //         if(columname_data[j][2] == 4)
+                            //         {
+                            //             disakaddrdata.diskaddrplex = cell.v
+                            //             insertflag = true
+                            //         }
+                            //         else
+                            //         {
+                            //             if(columname_data[j][2] == 5)
+                            //             {
+                            //                 disakaddrdata.diskaddrplex = cell.v
+                            //                 insertflag = true
+                            //             }
+                            //         }
+                                    
+                            //     }
+                                
+                                
+
+                            // }
 
                             if(k = columncount)
                             {
                                 if(columname_data[j][2] == 4)
                                 {
                                     disakaddrdata.diskaddrplex = cell.v
-                                    insertfalg = true
+                                    insertflag = true
                                 }
-                                
+                                                                    
                             }
-                            
                             if(columname_data[j][2] == 5)
                             {
                                 disakaddrdata.diskaddrplex = cell.v
-                                insertfalg = true
-                            }
+                                insertflag = true
+                            }    
 
+                            
                             
                         }
                         else
@@ -271,6 +312,9 @@ convertaddr1 = function(path,file){
                                 disakaddrdata.diskaddrsg = ""
                             }
                             console.log(columname_data[j][2])
+                            console.log("bugbugbug")
+                            console.log(k)
+                            console.log(columncount)
                             if(k < columncount)
                             {
                                 if(columname_data[j][2] == 4 && columname_data[k][2]==0)
@@ -283,45 +327,80 @@ convertaddr1 = function(path,file){
                                     disakaddrdata.diskaddraddrzvm = ""
                                 }
                             }
+                            // else
+                            // {
+                            //     if(k = columncount)
+                            //     {
+                            //         if(columname_data[j][2] == 4)
+                            //         {
+                            //             disakaddrdata.diskaddrplex = ""
+                            //             insertflag = true
+                            //         }
+                            //         else
+                            //         {
+                            //             if(columname_data[j][2] == 5)
+                            //             {
+                            //                 disakaddrdata.diskaddrplex = ""
+                            //                 insertflag = true
+                            //             }
+                            //         }
+                                    
+                            //     }
+                                
+                                
+                            // }
+
                             if(k = columncount)
                             {
                                 if(columname_data[j][2] == 4)
                                 {
                                     disakaddrdata.diskaddrplex = ""
-                                    insertfalg = true
+                                    insertflag = true
                                 }
                                 
+                                
                             }
-                            
+
                             if(columname_data[j][2] == 5)
                             {
                                 disakaddrdata.diskaddrplex = ""
                                 insertflag = true
                             }
-                        }
-
-                        if(insertflag == true)
-                        {
-                            disakaddrdata.diskaddrid = recordcount
-                            //do insert data
-                            console.log(recordcount)
-                            console.log(disakaddrdata)
-
-                            //set insertflag false
-                            insertflag == false
-                            recordcount = recordcount + 1
                             
                         }
+
+                        
                         
 
                         
                     }
                     
+                    console.log("&&&&&&&hhhh&&&&&")
+                    console.log(disakaddrdata.diskaddraddr)
+                    console.log(tempaddr)
+                    console.log(insertflag)
+                    // if(insertflag == true && tempaddr !== disakaddrdata.diskaddraddr && disakaddrdata.diskaddraddr !== "")
+                    if(insertflag == true && disakaddrdata.diskaddraddr !== "")
+                    {
+                        disakaddrdata.diskaddrid = recordcount
+                        //do insert data
+                        console.log("insert==========")
+                        console.log(recordcount)
+                        console.log(disakaddrdata)
 
+                        //set insertflag false
+                        insertflag = false
+                        recordcount = recordcount + 1
+
+                        tempaddr = disakaddrdata.diskaddraddr
+                        
+                    }
                     
                     
 
                 }
+                
+                
                 
             }
             console.log(col_start)
