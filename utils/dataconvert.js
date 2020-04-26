@@ -1,7 +1,8 @@
 const xlsx = require('xlsx')
 const diskaddr = require('../model/diskaddr');
 const XXZJCPHZB = "新线主机磁盘汇总表"
-const CPBGDJB = "磁盘变更登记表 "
+const CPBGDJB = "磁盘变更登记表"
+const filep = require('./fileprocess')
 
 //地址表初始设定
 
@@ -23,7 +24,9 @@ convertaddr1 = function(path,file){
 
     // for(var i=0;  i < wk.SheetNames.length; i++)
     var recordcount = 1
+    // filep('diskdata',__dirname,'s',"")
     for(var i=0;  i < 1; i++)
+    // for(var i=0;  i < wk.SheetNames.length; i++)
     {
         const shtname = wk.SheetNames[i]
         console.log(shtname)
@@ -44,6 +47,9 @@ convertaddr1 = function(path,file){
             diskaddrbox: shtname,
             rmrk: "",
         }
+
+        
+
         if (shtname !== XXZJCPHZB && shtname !== CPBGDJB) {
 
             const sht = wk.Sheets[shtname]
@@ -253,7 +259,7 @@ convertaddr1 = function(path,file){
                             // else 
                             // {
                                 
-                            //     if(k = columncount)
+                            //     if(k == columncount)
                             //     {
                             //         if(columname_data[j][2] == 4)
                             //         {
@@ -275,7 +281,7 @@ convertaddr1 = function(path,file){
 
                             // }
 
-                            if(k = columncount)
+                            if(k == columncount)
                             {
                                 if(columname_data[j][2] == 4)
                                 {
@@ -350,7 +356,7 @@ convertaddr1 = function(path,file){
                                 
                             // }
 
-                            if(k = columncount)
+                            if(k == columncount)
                             {
                                 if(columname_data[j][2] == 4)
                                 {
@@ -377,7 +383,7 @@ convertaddr1 = function(path,file){
                     
                     console.log("&&&&&&&hhhh&&&&&")
                     console.log(disakaddrdata.diskaddraddr)
-                    console.log(tempaddr)
+                    
                     console.log(insertflag)
                     // if(insertflag == true && tempaddr !== disakaddrdata.diskaddraddr && disakaddrdata.diskaddraddr !== "")
                     if(insertflag == true && disakaddrdata.diskaddraddr !== "")
@@ -387,12 +393,13 @@ convertaddr1 = function(path,file){
                         console.log("insert==========")
                         console.log(recordcount)
                         console.log(disakaddrdata)
+                        filep('diskdata',__dirname,'wa',JSON.stringify(disakaddrdata))
 
                         //set insertflag false
                         insertflag = false
                         recordcount = recordcount + 1
 
-                        tempaddr = disakaddrdata.diskaddraddr
+                        // tempaddr = disakaddrdata.diskaddraddr
                         
                     }
                     
