@@ -25,8 +25,8 @@ convertaddr1 = function(path,file){
     // for(var i=0;  i < wk.SheetNames.length; i++)
     var recordcount = 1
     // filep('diskdata',__dirname,'s',"")
-    for(var i=0;  i < 1; i++)
-    // for(var i=0;  i < wk.SheetNames.length; i++)
+    // for(var i=0;  i < 1; i++)
+    for(var i=0;  i < wk.SheetNames.length; i++)
     {
         const shtname = wk.SheetNames[i]
         console.log(shtname)

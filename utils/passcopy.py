@@ -26,11 +26,11 @@ class xlsxcopy(object):
             print(sht1.range('A1').value)
             print(sht1["A1048576"].end('up').row) #最大行，根据单元格位置
             #设定从列数最大的行取值
-            print(sht1["XFD18"].end('left').column) #最大列,根据单元格位置
+            print(sht1["XFD4"].end('left').column) #最大列,根据单元格位置
             
-            print(self.colnum_to_name(sht1["XFD18"].end('left').column - 1))
+            print(self.colnum_to_name(sht1["XFD4"].end('left').column - 1))
             
-            maxcolumn = self.colnum_to_name(sht1["XFD18"].end('left').column - 1) + str(sht1["A1048576"].end('up').row)
+            maxcolumn = self.colnum_to_name(sht1["XFD4"].end('left').column - 1) + str(sht1["A1048576"].end('up').row)
             print(maxcolumn)
 
             # sht1.api.Copy(Before=sht1.api)
