@@ -32,6 +32,7 @@ class xlsxcopy(object):
             
             maxcolumn = self.colnum_to_name(sht1["XFD4"].end('left').column - 1) + str(sht1["A1048576"].end('up').row)
             print(maxcolumn)
+            print("xxxx")
 
             # sht1.api.Copy(Before=sht1.api)
 
@@ -45,8 +46,12 @@ class xlsxcopy(object):
                 sht2 = wb2.sheets.add(wb1.sheets[i].name)
 
             #copy data
-            sht2.range('A1',maxcolumn).value = sht1.range('A1',maxcolumn).value
+            # print(sht1.range('A1',maxcolumn).raw_value)
+            
+
+            sht2.range('A1',maxcolumn).raw_value = sht1.range('A1',maxcolumn).raw_value
             # sht2.range('A1',maxcolumn).raw_value = sht1.range('A1',maxcolumn).raw_value
+            # print(sht2.range('A1',maxcolumn).value)
             
         
 
