@@ -20,17 +20,27 @@ class xlsxcopy(object):
         for i in range(0,len(wb1.sheets)):
             print("xxx")
             print(i)
-            print(wb1.sheets[3].name)
+            # print(wb1.sheets[3].name)
             print(wb1.sheets[i].name)
             sht1 = wb1.sheets[i]
             print(sht1.range('A1').value)
             print(sht1["A1048576"].end('up').row) #最大行，根据单元格位置
+            #情况1
+            # #设定从列数最大的行取值
+            # print(sht1["XFD4"].end('left').column) #最大列,根据单元格位置
+            
+            # print(self.colnum_to_name(sht1["XFD4"].end('left').column - 1))
+            
+            # maxcolumn = self.colnum_to_name(sht1["XFD4"].end('left').column - 1) + str(sht1["A1048576"].end('up').row)
+
+            #情况2
             #设定从列数最大的行取值
-            print(sht1["XFD4"].end('left').column) #最大列,根据单元格位置
+            print(sht1["XFD17"].end('left').column) #最大列,根据单元格位置
             
-            print(self.colnum_to_name(sht1["XFD4"].end('left').column - 1))
+            print(self.colnum_to_name(sht1["XFD17"].end('left').column - 1))
             
-            maxcolumn = self.colnum_to_name(sht1["XFD4"].end('left').column - 1) + str(sht1["A1048576"].end('up').row)
+            maxcolumn = self.colnum_to_name(sht1["XFD17"].end('left').column - 1) + str(sht1["A1048576"].end('up').row)
+
             print(maxcolumn)
             print("xxxx")
 
@@ -93,12 +103,18 @@ class xlsxcopy(object):
 
 
 if __name__ == "__main__":
-
+    
+    #template1
     # path = r"D:/workspace/pyhon3/cipan/"
     path = r"D:/workspace/nodejs/cipan/"
     localfilename = "张江主机新线磁盘统计表_测试开发 (20200324).xlsx"
     passwd='111111'
     destfilename = "template1.xlsx"
+
+    #template2
+    # localfilename = "张江主机新线磁盘按系统使用统计表_测试开发(20200324).xlsx"
+    # passwd='111111'
+    # destfilename = "template2.xlsx"
 
     xc = xlsxcopy()
     xc.xlsxprocess(path,localfilename,passwd,destfilename)
