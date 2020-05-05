@@ -1,5 +1,6 @@
 const xlsx = require('xlsx')
 const diskaddr = require('../model/diskaddr');
+const ctrlunit1 = require('../model/ctrlunit')
 const sysplex_box = require('../model/sysplex_box')
 const XXZJCPHZB = "新线主机磁盘汇总表"
 const CPBGDJB = "磁盘变更登记表"
@@ -397,6 +398,34 @@ convertaddr1 = function(path,file){
                         console.log(disakaddrdata)
                         filep('diskdata',__dirname,'wa',JSON.stringify(disakaddrdata))
 
+                        //insert database
+
+                        diskaddr.create(
+                            {
+
+                                diskaddrid: disakaddrdata.diskaddrid,
+                                //地址
+                                diskaddraddr: disakaddrdata.diskaddraddr,
+                                //卷名
+                                diskaddrlabel: disakaddrdata.diskaddrlabel,
+                                //TYPE
+                                diskaddrtype: disakaddrdata.diskaddrtype,
+                                //SG
+                                diskaddrsg: disakaddrdata.diskaddrsg,
+                                //PLEX
+                                diskaddrplex: disakaddrdata.diskaddrplex,
+                                diskaddrcu: disakaddrdata.diskaddrcu,
+                                diskaddraddrzvm: disakaddrdata.diskaddraddrzvm,
+                                diskaddruse: disakaddrdata.diskaddruse,
+                                diskaddrenv: disakaddrdata.diskaddrenv,
+                                diskaddrbox: disakaddrdata.diskaddrbox,
+                                rmrk:disakaddrdata.rmrk
+                            }
+                        ).then(function(result){
+                            console.log(result)
+                            console.log("插入 diskaddr 数据成功！")
+                        })
+
                         //set insertflag false
                         insertflag = false
                         recordcount = recordcount + 1
@@ -734,6 +763,45 @@ convertctrlunit = function(path,file){
                 {
                     console.log(ctrlunit)
                     filep('cudata',__dirname,'wa',JSON.stringify(ctrlunit))
+
+                    //write db
+
+                    ctrlunit1.create(
+                        {
+                            ctrlunitid:ctrlunit.ctrlunitid ,
+                            ctrlunitcuid:ctrlunit.ctrlunitcuid ,
+                            ctrlunitaddr:ctrlunit.ctrlunitaddr ,
+                            ctrlunit_m1_total:ctrlunit.ctrlunit_m1_total,
+                            ctrlunit_m1_used:ctrlunit.ctrlunit_m1_used ,
+                            ctrlunit_m1_free:ctrlunit.ctrlunit_m1_free ,
+                            ctrlunit_m3_total:ctrlunit.ctrlunit_m3_total ,
+                            ctrlunit_m3_used:ctrlunit.ctrlunit_m3_used,
+                            ctrlunit_m3_free:ctrlunit.ctrlunit_m3_free ,
+                            ctrlunit_m9_total:ctrlunit.ctrlunit_m9_total,
+                            ctrlunit_m9_used:ctrlunit.ctrlunit_m9_used ,
+                            ctrlunit_m9_free:ctrlunit.ctrlunit_m9_free ,
+                            ctrlunit_m27_total:ctrlunit.ctrlunit_m27_total ,
+                            ctrlunit_m27_used:ctrlunit.ctrlunit_m27_used ,
+                            ctrlunit_m27_free:ctrlunit.ctrlunit_m27_free,
+                            ctrlunit_m54_total:ctrlunit.ctrlunit_m54_total ,
+                            ctrlunit_m54_used:ctrlunit.ctrlunit_m54_used ,
+                            ctrlunit_m54_free:ctrlunit.ctrlunit_m54_free ,
+                            ctrlunit_total:ctrlunit.ctrlunit_total,
+                            ctrlunit_used: ctrlunit.ctrlunit_used,
+                            ctrlunit_free:ctrlunit.ctrlunit_free,
+                            ctrlunit_total_G: ctrlunit.ctrlunit_total_G,
+                            ctrlunit_used_G: ctrlunit.ctrlunit_used_G,
+                            ctrlunit_ratio: ctrlunit.ctrlunit_ratio,
+                            ctrlunit_stauts: ctrlunit.ctrlunit_stauts,
+                            ctrlunit_diskbox: ctrlunit.ctrlunit_diskbox,
+                            rmrk : ctrlunit.rmrk
+                        }
+                    ).then(function(result){
+                        console.log(result)
+                        console.log("插入ctrlunit数据成功！")
+                    })
+
+
                     insertflag = false
                 }
             
@@ -1682,14 +1750,14 @@ convertsysplex = function(path,file){
 
 
 //addr
-// // const path = "D:/workspace/pyhon3/cipan/";
-// const path = "D:/workspace/nodejs/cipan/";
+// const path = "D:/workspace/pyhon3/cipan/";
+const path = "D:/workspace/nodejs/cipan/";
 
-// const file = "template1.xlsx"
+const file = "template1.xlsx"
 
-// // wk = convertaddr(path,file)
+// wk = convertaddr(path,file)
 
-// convertaddr1(path,file)
+convertaddr1(path,file)
 
 //control unit
 // const path = "D:/workspace/nodejs/cipan/";
@@ -1701,10 +1769,10 @@ convertsysplex = function(path,file){
 
 
 //sysplex
-const path = "D:/workspace/nodejs/cipan/";
+// const path = "D:/workspace/nodejs/cipan/";
 
-const file = "template1.xlsx"
+// const file = "template1.xlsx"
 
 
-convertsysplex(path,file)
+// convertsysplex(path,file)
 
