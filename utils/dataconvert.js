@@ -396,7 +396,7 @@ convertaddr1 = function(path,file){
                         console.log("insert==========")
                         console.log(recordcount)
                         console.log(disakaddrdata)
-                        filep('diskdata',__dirname,'wa',JSON.stringify(disakaddrdata))
+                        // filep('diskdata',__dirname,'wa',JSON.stringify(disakaddrdata))
 
                         //insert database
 

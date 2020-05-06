@@ -45,8 +45,10 @@ const sequelizeInstance = new Sequelize(DB.database, DB.username, DB.password, {
     pool: {
         max: 100,
         min: 0,
-        acquire: 30000,
-        idle: 10000
+        acquire: 50000,
+        idle: 100000,
+        evict: 10000,
+        handleDisconnects: true
     },
     define:{
         paranoid: true,
