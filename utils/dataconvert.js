@@ -16,7 +16,7 @@ const DATALINE4 = 3
 
 const CELLUNIT = 5
 
-convertaddr1 = function(path,file){
+async function convertaddr1  (path,file){
 
     const wk = xlsx.readFile(path+file);
     // const first_sheet_name = wk.SheetNames[0]; // 获取工作簿中的工作表名字 
@@ -400,33 +400,33 @@ convertaddr1 = function(path,file){
 
                         //insert database
 
-                        mycreate(diskaddr,disakaddrdata)
+                        // mycreate(diskaddr,disakaddrdata)
 
-                        // diskaddr.create(
-                        //     {
+                        await diskaddr.create(
+                            {
 
-                        //         diskaddrid: disakaddrdata.diskaddrid,
-                        //         //地址
-                        //         diskaddraddr: disakaddrdata.diskaddraddr,
-                        //         //卷名
-                        //         diskaddrlabel: disakaddrdata.diskaddrlabel,
-                        //         //TYPE
-                        //         diskaddrtype: disakaddrdata.diskaddrtype,
-                        //         //SG
-                        //         diskaddrsg: disakaddrdata.diskaddrsg,
-                        //         //PLEX
-                        //         diskaddrplex: disakaddrdata.diskaddrplex,
-                        //         diskaddrcu: disakaddrdata.diskaddrcu,
-                        //         diskaddraddrzvm: disakaddrdata.diskaddraddrzvm,
-                        //         diskaddruse: disakaddrdata.diskaddruse,
-                        //         diskaddrenv: disakaddrdata.diskaddrenv,
-                        //         diskaddrbox: disakaddrdata.diskaddrbox,
-                        //         rmrk:disakaddrdata.rmrk
-                        //     }
-                        // ).then(function(result){
-                        //     console.log(result)
-                        //     console.log("插入 diskaddr 数据成功！")
-                        // })
+                                diskaddrid: disakaddrdata.diskaddrid,
+                                //地址
+                                diskaddraddr: disakaddrdata.diskaddraddr,
+                                //卷名
+                                diskaddrlabel: disakaddrdata.diskaddrlabel,
+                                //TYPE
+                                diskaddrtype: disakaddrdata.diskaddrtype,
+                                //SG
+                                diskaddrsg: disakaddrdata.diskaddrsg,
+                                //PLEX
+                                diskaddrplex: disakaddrdata.diskaddrplex,
+                                diskaddrcu: disakaddrdata.diskaddrcu,
+                                diskaddraddrzvm: disakaddrdata.diskaddraddrzvm,
+                                diskaddruse: disakaddrdata.diskaddruse,
+                                diskaddrenv: disakaddrdata.diskaddrenv,
+                                diskaddrbox: disakaddrdata.diskaddrbox,
+                                rmrk:disakaddrdata.rmrk
+                            }
+                        ).then(function(result){
+                            console.log(result)
+                            console.log("插入 diskaddr 数据成功！")
+                        })
 
                         //set insertflag false
                         insertflag = false
@@ -451,38 +451,38 @@ convertaddr1 = function(path,file){
 
 };
 
-//同步插入
-async function mycreate(diskaddr,disakaddrdata){
+// //同步插入
+// async function mycreate(diskaddr,disakaddrdata){
 
-    //insert database
+//     //insert database
 
-    await diskaddr.create(
-        {
+//     await diskaddr.create(
+//         {
 
-            diskaddrid: disakaddrdata.diskaddrid,
-            //地址
-            diskaddraddr: disakaddrdata.diskaddraddr,
-            //卷名
-            diskaddrlabel: disakaddrdata.diskaddrlabel,
-            //TYPE
-            diskaddrtype: disakaddrdata.diskaddrtype,
-            //SG
-            diskaddrsg: disakaddrdata.diskaddrsg,
-            //PLEX
-            diskaddrplex: disakaddrdata.diskaddrplex,
-            diskaddrcu: disakaddrdata.diskaddrcu,
-            diskaddraddrzvm: disakaddrdata.diskaddraddrzvm,
-            diskaddruse: disakaddrdata.diskaddruse,
-            diskaddrenv: disakaddrdata.diskaddrenv,
-            diskaddrbox: disakaddrdata.diskaddrbox,
-            rmrk:disakaddrdata.rmrk
-        }
-    ).then(function(result){
-        console.log(result)
-        console.log("插入 diskaddr111 数据成功！")
-    });
+//             diskaddrid: disakaddrdata.diskaddrid,
+//             //地址
+//             diskaddraddr: disakaddrdata.diskaddraddr,
+//             //卷名
+//             diskaddrlabel: disakaddrdata.diskaddrlabel,
+//             //TYPE
+//             diskaddrtype: disakaddrdata.diskaddrtype,
+//             //SG
+//             diskaddrsg: disakaddrdata.diskaddrsg,
+//             //PLEX
+//             diskaddrplex: disakaddrdata.diskaddrplex,
+//             diskaddrcu: disakaddrdata.diskaddrcu,
+//             diskaddraddrzvm: disakaddrdata.diskaddraddrzvm,
+//             diskaddruse: disakaddrdata.diskaddruse,
+//             diskaddrenv: disakaddrdata.diskaddrenv,
+//             diskaddrbox: disakaddrdata.diskaddrbox,
+//             rmrk:disakaddrdata.rmrk
+//         }
+//     ).then(function(result){
+//         console.log(result)
+//         console.log("插入 diskaddr111 数据成功！")
+//     });
 
-};
+// };
 
 
 convertctrlunit = function(path,file){
