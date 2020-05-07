@@ -44,9 +44,9 @@ const sequelizeInstance = new Sequelize(DB.database, DB.username, DB.password, {
     //连接池设置
     pool: {
         max: 100,
-        min: 0,
+        min: 20,
         acquire: 50000,
-        idle: 100000,
+        idle: 10000,
         evict: 10000,
         handleDisconnects: true
     },

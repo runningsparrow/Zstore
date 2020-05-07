@@ -400,31 +400,33 @@ convertaddr1 = function(path,file){
 
                         //insert database
 
-                        diskaddr.create(
-                            {
+                        mycreate(diskaddr,disakaddrdata)
 
-                                diskaddrid: disakaddrdata.diskaddrid,
-                                //地址
-                                diskaddraddr: disakaddrdata.diskaddraddr,
-                                //卷名
-                                diskaddrlabel: disakaddrdata.diskaddrlabel,
-                                //TYPE
-                                diskaddrtype: disakaddrdata.diskaddrtype,
-                                //SG
-                                diskaddrsg: disakaddrdata.diskaddrsg,
-                                //PLEX
-                                diskaddrplex: disakaddrdata.diskaddrplex,
-                                diskaddrcu: disakaddrdata.diskaddrcu,
-                                diskaddraddrzvm: disakaddrdata.diskaddraddrzvm,
-                                diskaddruse: disakaddrdata.diskaddruse,
-                                diskaddrenv: disakaddrdata.diskaddrenv,
-                                diskaddrbox: disakaddrdata.diskaddrbox,
-                                rmrk:disakaddrdata.rmrk
-                            }
-                        ).then(function(result){
-                            console.log(result)
-                            console.log("插入 diskaddr 数据成功！")
-                        })
+                        // diskaddr.create(
+                        //     {
+
+                        //         diskaddrid: disakaddrdata.diskaddrid,
+                        //         //地址
+                        //         diskaddraddr: disakaddrdata.diskaddraddr,
+                        //         //卷名
+                        //         diskaddrlabel: disakaddrdata.diskaddrlabel,
+                        //         //TYPE
+                        //         diskaddrtype: disakaddrdata.diskaddrtype,
+                        //         //SG
+                        //         diskaddrsg: disakaddrdata.diskaddrsg,
+                        //         //PLEX
+                        //         diskaddrplex: disakaddrdata.diskaddrplex,
+                        //         diskaddrcu: disakaddrdata.diskaddrcu,
+                        //         diskaddraddrzvm: disakaddrdata.diskaddraddrzvm,
+                        //         diskaddruse: disakaddrdata.diskaddruse,
+                        //         diskaddrenv: disakaddrdata.diskaddrenv,
+                        //         diskaddrbox: disakaddrdata.diskaddrbox,
+                        //         rmrk:disakaddrdata.rmrk
+                        //     }
+                        // ).then(function(result){
+                        //     console.log(result)
+                        //     console.log("插入 diskaddr 数据成功！")
+                        // })
 
                         //set insertflag false
                         insertflag = false
@@ -447,7 +449,40 @@ convertaddr1 = function(path,file){
         
     }
 
-}
+};
+
+//同步插入
+async function mycreate(diskaddr,disakaddrdata){
+
+    //insert database
+
+    await diskaddr.create(
+        {
+
+            diskaddrid: disakaddrdata.diskaddrid,
+            //地址
+            diskaddraddr: disakaddrdata.diskaddraddr,
+            //卷名
+            diskaddrlabel: disakaddrdata.diskaddrlabel,
+            //TYPE
+            diskaddrtype: disakaddrdata.diskaddrtype,
+            //SG
+            diskaddrsg: disakaddrdata.diskaddrsg,
+            //PLEX
+            diskaddrplex: disakaddrdata.diskaddrplex,
+            diskaddrcu: disakaddrdata.diskaddrcu,
+            diskaddraddrzvm: disakaddrdata.diskaddraddrzvm,
+            diskaddruse: disakaddrdata.diskaddruse,
+            diskaddrenv: disakaddrdata.diskaddrenv,
+            diskaddrbox: disakaddrdata.diskaddrbox,
+            rmrk:disakaddrdata.rmrk
+        }
+    ).then(function(result){
+        console.log(result)
+        console.log("插入 diskaddr111 数据成功！")
+    });
+
+};
 
 
 convertctrlunit = function(path,file){
